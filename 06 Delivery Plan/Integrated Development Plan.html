@@ -1,0 +1,250 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Integrated Development Plan · Tazakir</title><style>:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif}*{box-sizing:border-box}body{margin:0;background:#000;color:#f4f4f4}.bar{position:sticky;top:0;background:#111;border-bottom:1px solid #444;padding:16px 28px;z-index:2}.bar a{color:#fff;text-decoration:none}.article{max-width:1040px;margin:auto;padding:50px 28px 100px;line-height:1.65}h1,h2,h3,h4{font-family:Georgia,serif;font-weight:400;line-height:1.2}h1{font-size:44px}h2{font-size:32px;margin-top:58px}h3{font-size:25px;margin-top:42px}p,li{font-size:15px;color:#ddd}a{color:#fff;text-decoration:underline;text-underline-offset:3px}code{background:#222;border-radius:4px;padding:2px 5px;color:#fff}pre{background:#1d1d1d;border:1px solid #555;border-radius:8px;padding:18px;overflow:auto}pre code{background:none;padding:0}table{display:block;overflow:auto;border-collapse:collapse;width:100%;margin:24px 0}th,td{border:1px solid #555;padding:11px 13px;text-align:left;vertical-align:top;min-width:120px}th{background:#222}blockquote{border-left:2px solid #aaa;margin:24px 0;padding:2px 20px;color:#ddd}hr{border:0;border-top:1px solid #444;margin:42px 0}@media(max-width:700px){.article{padding:32px 18px 70px}h1{font-size:34px}}</style></head><body><div class="bar"><a href="../OPEN THIS FIRST.html">← Tazakir handoff</a></div><main class="article"><h1 id="tazakir-integrated-development-plan">Tazakir — Integrated Development Plan</h1>
+<p><strong>English final handoff | 9 October 2026</strong></p>
+<p><strong>Scope authority:</strong> the original <code>UX Blueprint.md</code>, represented in English by the Product and UX Specification in this package. The finished product supports <strong>English LTR by default and Arabic RTL as an option</strong>. The delivered prototype is an English visual reference only. No production application or backend has been built yet.</p>
+<p><strong>Planning baseline:</strong> 17 two-week sprints across six stages, assuming one fan-app frontend developer, one admin frontend developer, two backend developers, QA, and part-time design/infrastructure support. Re-estimate after Sprint 1 for the actual team and technical choices. These are sequencing and acceptance gates, not guaranteed dates.</p>
+<h2 id="rule-for-synchronized-frontend-and-backend-delivery">1. Rule for synchronized frontend and backend delivery</h2>
+<p>Every backlog item is a <strong>vertical product slice</strong>. A screen-only task or endpoint-only task cannot be called a completed product story. A slice is accepted only when its fan/admin interface consumes a real API in a shared test environment, the server rules and data migration are complete, and QA has exercised success, error, and permission cases in <strong>both languages</strong>. Mock data may support work in progress but cannot pass sprint review.</p>
+<p>Frontend, backend, and QA agree together at the start of each story on request and response contracts, state transitions, validation, authorization, loading/empty/error behavior, and example data. A contract change updates both producer and consumer plus automated contract tests in the same integrated change. Dependent work does not start on an unaccepted slice.</p>
+<p><strong>Suggested two-week cadence:</strong> Days 1–2 agree contract and acceptance tests; Days 3–7 implement frontend and backend in parallel; Day 8 integrate in a shared environment; Day 9 test end-to-end and fix defects; Day 10 demo, accept, and plan. Keep capacity for integration defects rather than carrying a disconnected UI into the next sprint.</p>
+<h3 id="definition-of-done-for-every-story">Definition of Done for every story</h3>
+<ol>
+<li>The relevant fan and/or admin screen and its required states use a real API and seeded test data.</li>
+<li>Database schema/migrations, server rules, authorization, idempotency/concurrency handling where relevant, and error responses are complete.</li>
+<li>Unit tests cover important rules; contract tests protect the UI/API boundary; at least one success and one failure path run end to end.</li>
+<li>English LTR and Arabic RTL copy, data, errors, focus order, and accessibility are reviewed. Arabic work is delivered in the same sprint, not in a late translation phase.</li>
+<li>Logs, metrics, and tracing needed to diagnose the slice exist. No critical or high-severity defect remains open at acceptance.</li>
+</ol>
+<h2 id="stages-and-sprints">2. Stages and sprints</h2>
+<h3 id="stage-1-platform-and-identity-sprints-12">Stage 1 — Platform and identity (Sprints 1–2)</h3>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Frontend in this sprint</th>
+<th>Backend and data in this sprint</th>
+<th>Shared acceptance proof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1 — Foundation and sign-in</strong></td>
+<td>Fan and admin shells, design tokens in both directions, Splash/Onboarding, fan registration/login and admin sign-in (<code>S-01–S-04</code>, <code>A-01</code>).</td>
+<td>Technology and deployment decisions, CI, bilingual-content architecture, users, sessions, initial roles, registration and login APIs.</td>
+<td>Fan and admin sign in through real APIs in English and Arabic on the same test environment. Contracts and CI pass.</td>
+</tr>
+<tr>
+<td><strong>2 — Account recovery and security</strong></td>
+<td>Password request/OTP/reset, profile and settings, language switch, admin 2FA and role-aware navigation (<code>S-05</code>, <code>S-09</code>, <code>S-20</code>, <code>S-21</code>, <code>A-01</code>, <code>A-14</code>).</td>
+<td>OTP expiry and attempt limits, saved language preference, session invalidation, server-enforced roles, account audit events.</td>
+<td>Language switch persists and mirrors layout; password reset invalidates required sessions; a restricted role is denied by the API, not just by hidden UI.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stage gate:</strong> one deployable environment, real identity for both products, and an agreed permission matrix. Admin features do not advance without matching server authorization.</p>
+<h3 id="stage-2-catalog-stadiums-and-fixtures-sprints-35">Stage 2 — Catalog, stadiums, and fixtures (Sprints 3–5)</h3>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Frontend in this sprint</th>
+<th>Backend and data in this sprint</th>
+<th>Shared acceptance proof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>3 — Clubs and competitions</strong></td>
+<td>Admin create/edit clubs and competitions (<code>A-07</code>, <code>A-15</code>); fan follow clubs and no-favorite state (<code>S-17</code>, <code>S-06</code>) in both languages.</td>
+<td>Club, competition, season, crest and localized-name models; authorized CRUD and fan read/follow APIs.</td>
+<td>A club/competition created in admin appears correctly in both fan languages under publication rules; empty state comes from the API.</td>
+</tr>
+<tr>
+<td><strong>4 — Stadium templates</strong></td>
+<td>Admin stadium/section/capacity builder (<code>A-06</code>); fan 2D stadium-map read view (<code>S-11</code>).</td>
+<td>Stadium/section/deck/row/seat schema, season and VIP flags, capacity validation, map-read API.</td>
+<td>Editing a stadium template changes the fan map; invalid capacity is rejected by server and shown clearly in UI.</td>
+</tr>
+<tr>
+<td><strong>5 — Fixture publication</strong></td>
+<td>Admin dashboard, matches, editor, pricing and section availability (<code>A-02–A-05</code>); fan Home, Fixtures, calendar, search, details, priority/sold-out states (<code>S-06</code>, <code>S-07</code>, <code>S-10</code>, <code>S-27</code>).</td>
+<td>Draft/published match, pricing, priority windows, search/filter/detail APIs, eligibility rules.</td>
+<td>Publishing a valid match makes it visible to eligible fans with matching price and time; draft is hidden; priority and sold-out states are server-driven.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stage gate:</strong> admin publishes a valid match and the fan app consumes the same data. No static duplicate fixture catalog lives in frontend code.</p>
+<h3 id="stage-3-core-booking-payment-ticket-sprints-68">Stage 3 — Core booking, payment, ticket (Sprints 6–8)</h3>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Frontend in this sprint</th>
+<th>Backend and data in this sprint</th>
+<th>Shared acceptance proof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>6 — Seats and quotes</strong></td>
+<td>Stand/row/seat selection, seat-lost recovery, summary and promo outcomes; admin promo and section controls (<code>S-11</code>, <code>S-12</code>, <code>A-05</code>, <code>A-11</code>).</td>
+<td>Concurrent seat inventory and temporary hold, central quote and fees, promo eligibility/expiry, double-sale prevention.</td>
+<td>Two fans race for one seat: only one hold wins; the other sees seat-lost before payment. Both languages show the same server total.</td>
+</tr>
+<tr>
+<td><strong>7 — Immediate payment</strong></td>
+<td>Saved/new method, wallet, success/failure/retry, admin order list/details (<code>S-13</code>, <code>S-14</code>, <code>A-09</code>).</td>
+<td>Payment-provider adapter in sandbox, payment intent/order states, authenticated webhook, idempotency keys and amount reconciliation.</td>
+<td>Replayed webhook cannot duplicate an order or charge; failure is recoverable. No production-payment claim before provider approval.</td>
+</tr>
+<tr>
+<td><strong>8 — Issue, verify, refund</strong></td>
+<td>Confirmation, ticket wallet, offline QR display, admin order review/refund (<code>S-08</code>, <code>S-15</code>, <code>S-16</code>, <code>A-09</code>).</td>
+<td>Unique ticket issuance, current-state gate validation, cancellation/refund with reason, audit and inventory updates.</td>
+<td>Valid ticket passes the gate according to policy; cancelled/refunded ticket does not. Both UI products show the updated state.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stage gate:</strong> one complete published-match-to-valid-ticket path, including failed payment, concurrency, and refund tests. Later commerce paths build on this accepted core.</p>
+<h3 id="stage-4-special-commerce-paths-sprints-911">Stage 4 — Special commerce paths (Sprints 9–11)</h3>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Frontend in this sprint</th>
+<th>Backend and data in this sprint</th>
+<th>Shared acceptance proof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 — Pay later</strong></td>
+<td>24-hour option, pending order, countdown and expiry in fan and admin (<code>S-08</code>, <code>S-13</code>, <code>S-26</code>, <code>A-09</code>).</td>
+<td>Server-timed hold for exactly 24 hours, reliable expiry job, later payment, cancellation and seat release.</td>
+<td>Payment succeeds once before deadline; after deadline it is rejected and seats return to inventory. Both interfaces use server time.</td>
+</tr>
+<tr>
+<td><strong>10 — Season passes</strong></td>
+<td>Packages, fixed-seat selection, pass card and activation, priority view; admin packages (<code>S-23</code>, <code>S-10</code>, <code>A-16</code>, <code>A-04</code>).</td>
+<td>Package inventory, one fixed seat per pass, included-match eligibility/activation, exceptional-match priority rules.</td>
+<td>Included-match activation uses the assigned seat without new selection; priority still respects eligibility and price.</td>
+</tr>
+<tr>
+<td><strong>11 — VIP</strong></td>
+<td>Fan submitted/approved/rejected and pending-payment states; admin review, quote and deadline (<code>S-24</code>, <code>S-26</code>, <code>A-08</code>).</td>
+<td>VIP type/capacity, request state machine, authorized final price, configurable payment deadline and ticket issuance after payment.</td>
+<td>No ticket or collected-revenue status before payment; approval, rejection, and expiry agree across fan/admin.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stage gate:</strong> each path has an explicit server-owned state machine with expiry/failure tests. Frontend counters and eligibility never override server truth.</p>
+<h3 id="stage-5-group-transfer-loyalty-sprints-1214">Stage 5 — Group, transfer, loyalty (Sprints 12–14)</h3>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Frontend in this sprint</th>
+<th>Backend and data in this sprint</th>
+<th>Shared acceptance proof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>12 — Group booking</strong></td>
+<td>Invitations, participant shares, group progress and expiry (<code>S-30</code>, <code>A-09</code>).</td>
+<td>One invitation/share per seat, independent share payments, all-paid confirmation, expiry and approved refund treatment.</td>
+<td>Partial payments cannot issue confirmed group tickets; expiry processes seats and money with an auditable record.</td>
+</tr>
+<tr>
+<td><strong>13 — Ticket transfer</strong></td>
+<td>Sender/recipient send, accept, decline and wallet states (<code>S-29</code>, <code>S-08</code>); support history view.</td>
+<td>Single-state transfer request, atomic ownership change, old-QR invalidation and audit.</td>
+<td>Sender and recipient cannot both use one ticket; decline preserves sender ownership.</td>
+</tr>
+<tr>
+<td><strong>14 — Loyalty</strong></td>
+<td>Balance, history, reward catalog and redemption outcome (<code>S-25</code>); admin rule view.</td>
+<td>Auditable points ledger, atomic earning/redemption, eligibility and promo interaction rules.</td>
+<td>Every balance change has a ledger entry; retries do not duplicate points; both products show one balance.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stage gate:</strong> money, ticket ownership, and points remain consistent after each transition, including retries and connection loss.</p>
+<h3 id="stage-6-operations-and-release-sprints-1517">Stage 6 — Operations and release (Sprints 15–17)</h3>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Frontend in this sprint</th>
+<th>Backend and data in this sprint</th>
+<th>Shared acceptance proof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>15 — Notifications and support</strong></td>
+<td>Notification center/deep links, help requests, admin composition/scheduling (<code>S-18</code>, <code>S-19</code>, <code>A-12</code>) in both languages.</td>
+<td>Localized templates by user preference, audience selection, delivery/retry log, support cases linked to orders/tickets.</td>
+<td>Changed-match alert arrives in the preferred language and opens the right record; retries do not double-send; support gives a case number.</td>
+</tr>
+<tr>
+<td><strong>16 — Admin operations and content</strong></td>
+<td>Users, reports, settings and legal content (<code>A-10</code>, <code>A-13</code>, <code>A-14</code>, <code>S-22</code>), offline/update states (<code>S-28</code>).</td>
+<td>Real-data reports and export permissions, approved English/Arabic legal versions, operational settings/audit, minimum-app-version policy.</td>
+<td>Report reconciles to orders and export is role-restricted; legal and system messages follow language preference.</td>
+</tr>
+<tr>
+<td><strong>17 — Stabilize and launch</strong></td>
+<td>UX/accessibility fixes at 320/390/430px mobile and 1024/1440px admin, final English LTR and Arabic RTL copy.</td>
+<td>Booking/payment load tests, security/role review, backup and restore, observability, alerts, rollback and deployment plan.</td>
+<td>Bilingual UAT for every Blueprint route, order/payment/ticket reconciliation, no critical/high defect, signed product and operations approval.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Launch gate:</strong> screen completion alone is insufficient. Concurrency, payment, QR, permission, recovery, and operational test evidence are required, together with approved payment provider, legal text, refund rules, and asset rights.</p>
+<h2 id="backlog-integration-and-language-controls">3. Backlog, integration, and language controls</h2>
+<ul>
+<li>Maintain <strong>one backlog organized by user journey</strong>. Each story includes frontend, API contract, backend, data, QA, UX and operations checks. Closing a frontend or backend subtask does not close the product story.</li>
+<li>Version API contracts with examples for success, validation, unauthorized, conflict, and expired states. CI fails on consumer-breaking changes until both sides and tests update together.</li>
+<li>Deploy an integrated test environment every day with repeatable seed data. Report end-to-end journey health daily. Reserve sprint capacity for integration defects.</li>
+<li>Track accepted end-to-end journeys, contract/E2E failures, defect age, order/payment inconsistencies, and coverage of Blueprint screens and states. Do not use raw screen or endpoint count as progress.</li>
+<li>Each new screen/state ships <strong>English and Arabic copy, correct direction, localized server-provided names/errors, and bilingual acceptance tests in that sprint</strong>. Stable IDs, order numbers, amounts, and business states remain language-neutral. Missing Arabic sample boards in the prototype never waive this condition; design reviews RTL differences within the sprint.</li>
+</ul>
+<h2 id="decisions-required-before-dependent-work">4. Decisions required before dependent work</h2>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Latest needed</th>
+<th>If unresolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App/admin/backend frameworks, database and hosting</td>
+<td>End of Sprint 1</td>
+<td>Do not fragment production contracts across incompatible choices.</td>
+</tr>
+<tr>
+<td>Card/wallet provider, pay-later model, sandbox and webhook specification</td>
+<td>Before Sprint 7; pay-later detail before Sprint 9</td>
+<td>Build/test adapter boundaries, but do not accept or market production payment readiness.</td>
+</tr>
+<tr>
+<td>Cancellation/refund/service-fee and incomplete-group-share policy</td>
+<td>Before Sprint 8; group detail before Sprint 12</td>
+<td>Do not activate or accept live refunds without approved policy.</td>
+</tr>
+<tr>
+<td>Loyalty earning, redemption and promo interaction rules</td>
+<td>Before Sprint 14</td>
+<td>Do not enable real reward redemption.</td>
+</tr>
+<tr>
+<td>Final bilingual legal copy, company identity, and crest use rights</td>
+<td>Before Sprint 16/launch</td>
+<td>Do not publish unapproved legal or branded content.</td>
+</tr>
+</tbody>
+</table>
+<p>The plan sequences the full Blueprint scope while keeping frontend, backend, QA, and both languages aligned. It reduces integration rework; it cannot eliminate the need for testing and final approval.</p>
+</main></body></html>

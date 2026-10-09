@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>START HERE · Tazakir</title><style>:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif}*{box-sizing:border-box}body{margin:0;background:#000;color:#f4f4f4}.bar{position:sticky;top:0;background:#111;border-bottom:1px solid #444;padding:16px 28px;z-index:2}.bar a{color:#fff;text-decoration:none}.article{max-width:1040px;margin:auto;padding:50px 28px 100px;line-height:1.65}h1,h2,h3,h4{font-family:Georgia,serif;font-weight:400;line-height:1.2}h1{font-size:44px}h2{font-size:32px;margin-top:58px}h3{font-size:25px;margin-top:42px}p,li{font-size:15px;color:#ddd}a{color:#fff;text-decoration:underline;text-underline-offset:3px}code{background:#222;border-radius:4px;padding:2px 5px;color:#fff}pre{background:#1d1d1d;border:1px solid #555;border-radius:8px;padding:18px;overflow:auto}pre code{background:none;padding:0}table{display:block;overflow:auto;border-collapse:collapse;width:100%;margin:24px 0}th,td{border:1px solid #555;padding:11px 13px;text-align:left;vertical-align:top;min-width:120px}th{background:#222}blockquote{border-left:2px solid #aaa;margin:24px 0;padding:2px 20px;color:#ddd}hr{border:0;border-top:1px solid #444;margin:42px 0}@media(max-width:700px){.article{padding:32px 18px 70px}h1{font-size:34px}}</style></head><body><div class="bar"><a href="../OPEN THIS FIRST.html">← Tazakir handoff</a></div><main class="article"><h1 id="tazakir-final-english-design-handoff">Tazakir — Final English Design Handoff</h1>
+<p><strong>Prepared:</strong> 9 October 2026<br />
+<strong>Project:</strong> Football match ticketing fan app + admin panel<br />
+<strong>Delivery state:</strong> Design and implementation planning complete; production software has <strong>not</strong> been developed.</p>
+<h2 id="what-to-open-first">What to open first</h2>
+<ol>
+<li><a href="../02%20Product%20Specification/Tazakir%20Product%20Specification.html">Product and UX Specification</a> — the English product scope, user journeys, screen requirements, business states, design rules, roles, and open decisions.</li>
+<li><a href="../03%20Design/Tazakir%20Prototype.html">Unified Prototype</a> — browse the final <strong>108 unique visual boards</strong> in two pages: 76 fan app and 32 admin. The presentation shell in this package is English.</li>
+<li><a href="../03%20Design/Tazakir%20App%20and%20Admin%20Screens.html">Complete Editable Artifact</a> — the full embedded design source and canvas. It has the same 108 displayed boards and two product pages.</li>
+<li><a href="../06%20Delivery%20Plan/Integrated%20Development%20Plan.html">Integrated Development Plan</a> — 17 synchronized sprints across six stages, with frontend, backend, QA, and both languages delivered in each slice.</li>
+</ol>
+<p>The <a href="../02%20Product%20Specification/Design%20Board%20Inventory.csv">Design Board Inventory</a> lists each board's display order, product, title, internal ID, and canvas dimensions. The <a href="../02%20Product%20Specification/Initial%20Screen%20Analysis%20-%20Historical.html">Initial Screen Analysis</a> records the earlier 22-screen baseline; later Blueprint decisions supersede its old assumptions.</p>
+<h2 id="folder-map">Folder map</h2>
+<table>
+<thead>
+<tr>
+<th>Folder</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01 Overview</code></td>
+<td>This guide and delivery status.</td>
+</tr>
+<tr>
+<td><code>02 Product Specification</code></td>
+<td>English consolidated specification, historical initial analysis, and all-board inventory.</td>
+</tr>
+<tr>
+<td><code>03 Design</code></td>
+<td>English-presentation prototype and the complete design Artifact.</td>
+</tr>
+<tr>
+<td><code>04 Design System</code></td>
+<td>The supplied Athletics style reference, CSS, and JSON tokens (already in English).</td>
+</tr>
+<tr>
+<td><code>05 Brand Assets</code></td>
+<td>Supplied Tazakir logos, app icon, and team/competition crests.</td>
+</tr>
+<tr>
+<td><code>06 Delivery Plan</code></td>
+<td>English, vertically integrated development plan.</td>
+</tr>
+<tr>
+<td><code>07 Original Sources</code></td>
+<td>Unchanged Arabic source documents, archived to preserve the full project record.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="scope-and-precedence">Scope and precedence</h2>
+<p>The unchanged <a href="../07%20Original%20Sources/UX%20Blueprint.md">original UX Blueprint</a> in this package is the detailed design authority. The English specification consolidates its approved scope for handoff. The final product requires <strong>English LTR as default and Arabic RTL as an option</strong>, with a language switch and bilingual implementation. The visual prototype currently demonstrates English screens only; three earlier Arabic demonstration boards were removed by request. Their removal does <strong>not</strong> cancel Arabic development.</p>
+<p>The prototype and Artifact are review tools, not operational apps. They contain representative sample names, prices, dates, orders, and legal copy. The HTML boards are embedded in the two design files; individual <code>.dc.html</code> files are not part of this delivery.</p>
+<h2 id="achieved-work">Achieved work</h2>
+<ul>
+<li>Defined the full fan app (<code>S-01–S-30</code>) and admin panel (<code>A-01–A-16</code>) with user journeys, branch states, and acceptance rules.</li>
+<li>Created and consolidated the visual design into 108 unique boards across two product canvases. <code>PhoneHomeScreen</code> is first in the fan page; the exact duplicate <code>PhoneHomeScreenAccount</code> was removed.</li>
+<li>Applied the Athletics monochrome system, supplied brand assets, 2D stadium structure, and matching fan/admin interface patterns.</li>
+<li>Specified fixed-seat season passes, 24-hour pay-later holds, VIP review, group payment, ticket transfer, loyalty, notifications, legal content, and admin operations.</li>
+<li>Planned synchronized frontend/backend delivery with contracts, shared acceptance tests, bilingual checks, and stage gates.</li>
+</ul>
+<h2 id="remaining-approvals-before-production-or-launch">Remaining approvals before production or launch</h2>
+<p>The payment and wallet provider, pay-later implementation model, refund and group-share policy, loyalty earning/redemption policy, company/legal details and review, and logo use rights need decisions before their related sprints or launch. The legal wording inside screens is a draft. Visual sign-off and functional, security, payment, load, and operational testing are still required. No screenshot set or production code is claimed in this handoff.</p>
+</main></body></html>

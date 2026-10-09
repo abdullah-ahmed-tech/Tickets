@@ -1,0 +1,133 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Initial Screen Analysis - Historical · Tazakir</title><style>:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif}*{box-sizing:border-box}body{margin:0;background:#000;color:#f4f4f4}.bar{position:sticky;top:0;background:#111;border-bottom:1px solid #444;padding:16px 28px;z-index:2}.bar a{color:#fff;text-decoration:none}.article{max-width:1040px;margin:auto;padding:50px 28px 100px;line-height:1.65}h1,h2,h3,h4{font-family:Georgia,serif;font-weight:400;line-height:1.2}h1{font-size:44px}h2{font-size:32px;margin-top:58px}h3{font-size:25px;margin-top:42px}p,li{font-size:15px;color:#ddd}a{color:#fff;text-decoration:underline;text-underline-offset:3px}code{background:#222;border-radius:4px;padding:2px 5px;color:#fff}pre{background:#1d1d1d;border:1px solid #555;border-radius:8px;padding:18px;overflow:auto}pre code{background:none;padding:0}table{display:block;overflow:auto;border-collapse:collapse;width:100%;margin:24px 0}th,td{border:1px solid #555;padding:11px 13px;text-align:left;vertical-align:top;min-width:120px}th{background:#222}blockquote{border-left:2px solid #aaa;margin:24px 0;padding:2px 20px;color:#ddd}hr{border:0;border-top:1px solid #444;margin:42px 0}@media(max-width:700px){.article{padding:32px 18px 70px}h1{font-size:34px}}</style></head><body><div class="bar"><a href="../OPEN THIS FIRST.html">← Tazakir handoff</a></div><main class="article"><h1 id="initial-screen-analysis-historical-baseline">Initial Screen Analysis — Historical Baseline</h1>
+<p>This English rendering records the project's <strong>initial</strong> screen inventory. It is included to show how the work evolved. The later <a href="./Tazakir%20Product%20Specification.html">Product and UX Specification</a> and original <code>UX Blueprint.md</code> supersede any older assumption here, including generic A/B/C pricing, 2D/3D uncertainty, and an early description of season benefits as a discount.</p>
+<h2 id="initial-user-routes">Initial user routes</h2>
+<ul>
+<li>A guest enters Splash → Onboarding → Login/Sign Up. Attempting a booking prompts authentication in a modal.</li>
+<li>A signed-in fan follows Home → Discovery → Checkout → Post-booking.</li>
+<li>A season member follows the standard route with a season-ticket activation action at Match Details or Payment. The later Blueprint refines this into a fixed season seat and included-match activation.</li>
+</ul>
+<h2 id="original-22-fan-screens">Original 22 fan screens</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Screen</th>
+<th>Initial purpose and controls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S-01</td>
+<td>Splash</td>
+<td>Brand, competition name, loading indicator.</td>
+</tr>
+<tr>
+<td>S-02</td>
+<td>Onboarding</td>
+<td>Three explanatory slides about quick booking, interactive maps, and following clubs; Skip/Next.</td>
+</tr>
+<tr>
+<td>S-03</td>
+<td>Login</td>
+<td>Phone/email, password, forgot-password route.</td>
+</tr>
+<tr>
+<td>S-04</td>
+<td>Sign Up</td>
+<td>Name, mobile, password, favorite-club selector.</td>
+</tr>
+<tr>
+<td>S-05</td>
+<td>Forgot Password</td>
+<td>Mobile, OTP, new password.</td>
+</tr>
+<tr>
+<td>S-06</td>
+<td>Home</td>
+<td>Upcoming preferred-club fixtures, match cards, quick booking, recommendations.</td>
+</tr>
+<tr>
+<td>S-07</td>
+<td>Fixtures</td>
+<td>Week/month calendar, round filters, match list.</td>
+</tr>
+<tr>
+<td>S-08</td>
+<td>My Tickets</td>
+<td>Upcoming/past/cancelled tickets and compact QR.</td>
+</tr>
+<tr>
+<td>S-09</td>
+<td>Profile</td>
+<td>Photo, name, loyalty balance, settings and favorites navigation.</td>
+</tr>
+<tr>
+<td>S-10</td>
+<td>Match Details</td>
+<td>Club crests, venue, classification, prices, Select Seats.</td>
+</tr>
+<tr>
+<td>S-11</td>
+<td>Stadium Map</td>
+<td>Interactive seating map and available/full/closed sections. The later decision is 2D.</td>
+</tr>
+<tr>
+<td>S-12</td>
+<td>Booking Summary</td>
+<td>Seats, quantity, total, promo code, continue to payment.</td>
+</tr>
+<tr>
+<td>S-13</td>
+<td>Payment Methods</td>
+<td>Saved/new card, wallet, pay-later choice.</td>
+</tr>
+<tr>
+<td>S-14</td>
+<td>Payment Result</td>
+<td>Success acknowledgement or failure reason and retry.</td>
+</tr>
+<tr>
+<td>S-15</td>
+<td>Confirmation</td>
+<td>Order number, seats, entry instructions, view ticket.</td>
+</tr>
+<tr>
+<td>S-16</td>
+<td>Full-screen QR</td>
+<td>Scannable code, brightness behavior, fixture details.</td>
+</tr>
+<tr>
+<td>S-17</td>
+<td>Manage Clubs</td>
+<td>Follow/unfollow available league clubs.</td>
+</tr>
+<tr>
+<td>S-18</td>
+<td>Notifications</td>
+<td>Ticket releases, schedule changes, and results in a chronological list.</td>
+</tr>
+<tr>
+<td>S-19</td>
+<td>Help Center</td>
+<td>Searchable and expandable FAQs, contact support.</td>
+</tr>
+<tr>
+<td>S-20</td>
+<td>Settings</td>
+<td>English/Arabic switch, privacy, push preferences, session logout.</td>
+</tr>
+<tr>
+<td>S-21</td>
+<td>Edit Profile</td>
+<td>Photo, name, mobile and password changes.</td>
+</tr>
+<tr>
+<td>S-22</td>
+<td>Legal</td>
+<td>Privacy Policy and Terms display.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="original-admin-functions">Original admin functions</h2>
+<p>The early analysis proposed a separate web admin experience for match management, ticket-tier pricing, opening and closing stadium sections, VIP request review, and attendance/sales statistics. The later Blueprint expanded this to the 16 named A-01–A-16 admin screens and their states. Use the later specification for implementation.</p>
+</main></body></html>

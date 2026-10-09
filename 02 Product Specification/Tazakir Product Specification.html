@@ -1,0 +1,337 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tazakir Product Specification · Tazakir</title><style>:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif}*{box-sizing:border-box}body{margin:0;background:#000;color:#f4f4f4}.bar{position:sticky;top:0;background:#111;border-bottom:1px solid #444;padding:16px 28px;z-index:2}.bar a{color:#fff;text-decoration:none}.article{max-width:1040px;margin:auto;padding:50px 28px 100px;line-height:1.65}h1,h2,h3,h4{font-family:Georgia,serif;font-weight:400;line-height:1.2}h1{font-size:44px}h2{font-size:32px;margin-top:58px}h3{font-size:25px;margin-top:42px}p,li{font-size:15px;color:#ddd}a{color:#fff;text-decoration:underline;text-underline-offset:3px}code{background:#222;border-radius:4px;padding:2px 5px;color:#fff}pre{background:#1d1d1d;border:1px solid #555;border-radius:8px;padding:18px;overflow:auto}pre code{background:none;padding:0}table{display:block;overflow:auto;border-collapse:collapse;width:100%;margin:24px 0}th,td{border:1px solid #555;padding:11px 13px;text-align:left;vertical-align:top;min-width:120px}th{background:#222}blockquote{border-left:2px solid #aaa;margin:24px 0;padding:2px 20px;color:#ddd}hr{border:0;border-top:1px solid #444;margin:42px 0}@media(max-width:700px){.article{padding:32px 18px 70px}h1{font-size:34px}}</style></head><body><div class="bar"><a href="../OPEN THIS FIRST.html">← Tazakir handoff</a></div><main class="article"><h1 id="tazakir-product-and-ux-specification">Tazakir — Product and UX Specification</h1>
+<p><strong>Final English handoff | 9 October 2026</strong></p>
+<p>This document is the English delivery specification derived from the project's <a href="../07%20Original%20Sources/UX%20Blueprint.md">original UX Blueprint</a>, initial screen analysis, and the final design files. The Arabic Blueprint remains unchanged in this package's original-sources archive. Where an early analysis and the later Blueprint disagree, the later Blueprint decisions described here take precedence.</p>
+<h2 id="product-scope-and-current-status">1. Product, scope, and current status</h2>
+<p>Tazakir is a football match ticketing platform with a <strong>fan mobile application</strong> and a <strong>separate desktop administration panel</strong>. The fan app covers discovery, seat selection, payment, ticket use, season passes, VIP requests, loyalty, group payment, and ticket transfer. Admin users maintain the catalog, stadiums, matches, pricing, orders, users, notifications, legal content, and reports.</p>
+<p>The project is at the <strong>design and development handoff stage</strong>. The HTML files are reviewable design artifacts, not working booking software. No production backend, payment gateway, inventory service, gate validation service, or operational deployment is included in this delivery.</p>
+<p>The final design contains <strong>108 unique boards on two product pages</strong>: 76 fan app boards and 32 admin boards. A duplicate device home board and three Arabic demonstration boards were removed from the visual files. The final product still requires <strong>English as the default LTR language and Arabic as an optional RTL language</strong>, including a language switch in S-20. The current prototype is an English visual reference; its lack of Arabic demonstration boards does not narrow the bilingual implementation scope.</p>
+<p>The governing product rule is <strong>full-scope delivery</strong>: the features listed below are part of the planned product, not placeholders to be discarded after an MVP. The staged development plan organizes implementation without reducing the feature set.</p>
+<h2 id="fan-app-screen-inventory">2. Fan app screen inventory</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Screen</th>
+<th>Required behavior and important states</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S-01</td>
+<td>Splash</td>
+<td>Show Tazakir identity and loading state; resolve onboarding or authentication destination.</td>
+</tr>
+<tr>
+<td>S-02</td>
+<td>Onboarding</td>
+<td>Three slides, Skip/Next/Get Started, concise explanations of booking, seat maps, and following clubs.</td>
+</tr>
+<tr>
+<td>S-03</td>
+<td>Login</td>
+<td>Phone or email and password; route to password recovery and registration.</td>
+</tr>
+<tr>
+<td>S-04</td>
+<td>Sign Up</td>
+<td>Name, Egyptian mobile number, password, and favorite club selected from the managed club catalog; inline validation.</td>
+</tr>
+<tr>
+<td>S-05</td>
+<td>Forgot Password</td>
+<td>Request a code, verify the six-digit OTP, set and confirm a new password; expiry, resend timer, and field errors.</td>
+</tr>
+<tr>
+<td>S-06</td>
+<td>Home</td>
+<td>Upcoming match for the favorite club, recommendations, other fixtures, search and notifications entry points; no-favorite-club state.</td>
+</tr>
+<tr>
+<td>S-07</td>
+<td>Fixtures</td>
+<td>Week/month calendar, competition and round filters, match cards, and no-fixtures state.</td>
+</tr>
+<tr>
+<td>S-08</td>
+<td>My Tickets</td>
+<td>Upcoming, pending, past, and cancelled tabs; VIP/season labels; ticket details and compact QR; empty state.</td>
+</tr>
+<tr>
+<td>S-09</td>
+<td>Profile</td>
+<td>Account summary, loyalty balance, favorite clubs, notifications, help, settings, profile editing, and season-pass discovery.</td>
+</tr>
+<tr>
+<td>S-10</td>
+<td>Match Details</td>
+<td>Teams, competition, venue, kickoff, pricing and demand; season-seat information, priority-window countdown, sold-out and rescheduled states; separate Seat and VIP actions.</td>
+</tr>
+<tr>
+<td>S-11</td>
+<td>Stadium Map</td>
+<td>Interactive 2D stadium map, stand/deck/row/seat selection, availability labels, sold hatching, closed sections, VIP identification, and seat-lost recovery.</td>
+</tr>
+<tr>
+<td>S-12</td>
+<td>Booking Summary</td>
+<td>Selected seats, fee and discount breakdown, valid/invalid promo states, total from the server; preserve seat selection through guest authentication.</td>
+</tr>
+<tr>
+<td>S-13</td>
+<td>Payment Methods</td>
+<td>Saved/new card, wallet, pay-now and 24-hour pay-later choice; explain a temporary hold before confirmation.</td>
+</tr>
+<tr>
+<td>S-14</td>
+<td>Payment Result</td>
+<td>Clear success and failure branches, retry and change-method actions without duplicate charge.</td>
+</tr>
+<tr>
+<td>S-15</td>
+<td>Confirmation</td>
+<td>Order number, seats, entry guidance, VIP/season label when applicable, and link to ticket.</td>
+</tr>
+<tr>
+<td>S-16</td>
+<td>Full-screen QR Ticket</td>
+<td>Large scannable code and match details; offline display, brightness behavior, and authoritative gate validation.</td>
+</tr>
+<tr>
+<td>S-17</td>
+<td>Manage Clubs</td>
+<td>Follow and unfollow clubs in the managed catalog, with official crests where supplied.</td>
+</tr>
+<tr>
+<td>S-18</td>
+<td>Notifications</td>
+<td>Chronological grouping, read/unread state, and deep links to the originating match, ticket, or order.</td>
+</tr>
+<tr>
+<td>S-19</td>
+<td>Help Center</td>
+<td>Search and expand FAQs; submit a support request linked to a relevant order if available.</td>
+</tr>
+<tr>
+<td>S-20</td>
+<td>Settings</td>
+<td>English/Arabic language switch, privacy, push preferences, legal pages, and sign-out.</td>
+</tr>
+<tr>
+<td>S-21</td>
+<td>Edit Profile</td>
+<td>Photo, name, mobile number, and password change with field validation and session handling.</td>
+</tr>
+<tr>
+<td>S-22</td>
+<td>Legal</td>
+<td>Versioned Privacy Policy and Terms &amp; Conditions supplied from admin-managed content.</td>
+</tr>
+<tr>
+<td>S-23</td>
+<td>Season Tickets</td>
+<td>Browse packages and savings, select one eligible fixed seat for the season, pay, display a season card, and activate included matches without reselecting the seat.</td>
+</tr>
+<tr>
+<td>S-24</td>
+<td>VIP Request</td>
+<td>Choose serviced VIP box or VIP seat, guest count, notes, approximate range, and submit for admin review; submitted, approved, and rejected outcomes.</td>
+</tr>
+<tr>
+<td>S-25</td>
+<td>Loyalty</td>
+<td>Balance, progress, transaction history, reward catalog, disabled insufficient-balance actions, and redemption result.</td>
+</tr>
+<tr>
+<td>S-26</td>
+<td>Pending Order</td>
+<td>Shared pattern for 24-hour pay-later and approved VIP awaiting payment: server-based countdown, details, pay now, cancel, expiry.</td>
+</tr>
+<tr>
+<td>S-27</td>
+<td>Search</td>
+<td>Search team, stadium, or competition; recent searches, results, and no-results action.</td>
+</tr>
+<tr>
+<td>S-28</td>
+<td>System States</td>
+<td>Reusable no-connection, required-update, empty, loading, error, disabled, and success patterns.</td>
+</tr>
+<tr>
+<td>S-29</td>
+<td>Ticket Transfer</td>
+<td>Send to phone/email; recipient accepts or declines; ownership and QR validity change on acceptance.</td>
+</tr>
+<tr>
+<td>S-30</td>
+<td>Group Booking</td>
+<td>Split payment by seat, send secure invitations, show each participant's share and group progress, and handle expiry.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="admin-panel-screen-inventory">3. Admin panel screen inventory</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Screen</th>
+<th>Required behavior and important states</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A-01</td>
+<td>Admin Login</td>
+<td>Role-based sign-in with optional second factor and access controls.</td>
+</tr>
+<tr>
+<td>A-02</td>
+<td>Dashboard</td>
+<td>Today's sales, upcoming matches, pending VIP requests, expiring pay-later holds, recent bookings, and sales summaries.</td>
+</tr>
+<tr>
+<td>A-03</td>
+<td>Matches</td>
+<td>Search and filter by competition and status; show fixture, venue, occupancy, and state.</td>
+</tr>
+<tr>
+<td>A-04</td>
+<td>Match Editor</td>
+<td>Select competition, clubs, stadium, date and kickoff; draft/publish and exceptional-match priority-window dates; review before publishing.</td>
+</tr>
+<tr>
+<td>A-05</td>
+<td>Pricing and Sections</td>
+<td>Price actual stadium tiers and VIP seats, open/close match sections, show occupancy, and publish only after required setup.</td>
+</tr>
+<tr>
+<td>A-06</td>
+<td>Stadiums</td>
+<td>Maintain reusable 2D section-map templates, capacities, deck/side divisions, season-eligible areas, VIP seats/boxes and box capacity.</td>
+</tr>
+<tr>
+<td>A-07</td>
+<td>Clubs and Teams</td>
+<td>Add/edit clubs, crests, and catalog membership; support new continental opponents when needed.</td>
+</tr>
+<tr>
+<td>A-08</td>
+<td>VIP Requests</td>
+<td>Review type, guests and capacity; set final price and payment deadline; approve or reject with notification and audit.</td>
+</tr>
+<tr>
+<td>A-09</td>
+<td>Orders and Bookings</td>
+<td>Search by order/phone/email; inspect seats and payment history, pending BNPL countdown, cancel/refund with reason, resend ticket.</td>
+</tr>
+<tr>
+<td>A-10</td>
+<td>Users</td>
+<td>Fan list, booking history, season-member status, and controlled account freeze.</td>
+</tr>
+<tr>
+<td>A-11</td>
+<td>Discount Codes</td>
+<td>Create and manage value, validity, eligibility, usage limits, and status.</td>
+</tr>
+<tr>
+<td>A-12</td>
+<td>Notifications</td>
+<td>Compose, target, preview, schedule, and review delivered messages; include season holders as an audience.</td>
+</tr>
+<tr>
+<td>A-13</td>
+<td>Statistics and Reports</td>
+<td>Attendance, revenue by ticket category including VIP, trend charts, and authorized CSV/PDF export.</td>
+</tr>
+<tr>
+<td>A-14</td>
+<td>Settings</td>
+<td>Platform/payment settings, maintenance, team roles and invitations, legal-content editor and publication.</td>
+</tr>
+<tr>
+<td>A-15</td>
+<td>Competitions</td>
+<td>Domestic and continental competition catalog, seasons, match counts, and active status.</td>
+</tr>
+<tr>
+<td>A-16</td>
+<td>Season Packages</td>
+<td>Club, stadium, eligible section, price, included match count, and sold/available fixed-seat counts.</td>
+</tr>
+</tbody>
+</table>
+<p>The board inventory CSV in this folder lists every embedded board in display order. The <code>.dc.html</code> values there are <strong>internal board IDs inside the Artifact</strong>, not separate files.</p>
+<h2 id="end-to-end-journeys">4. End-to-end journeys</h2>
+<h3 id="standard-booking">Standard booking</h3>
+<p>Browse Home/Fixtures → Match Details → eligibility and priority check → stand/deck/row/seat → server quote and optional discount → guest sign-in if needed without losing selection → payment method → success or failure → confirmation → ticket QR. A season holder activating an included match uses the previously assigned fixed seat and skips new seat selection. An exceptional match may give season holders an earlier <strong>paid</strong> booking window; the priority right does not make that match free.</p>
+<h3 id="match-publication">Match publication</h3>
+<p>Authorized admin selects or creates competition, clubs, and stadium → configures draft match and any priority window → sets tier/VIP prices and section availability → reviews → publishes. The published fixture becomes visible to the fan app according to eligibility. A draft is never exposed as a live ticket offer.</p>
+<h3 id="vip">VIP</h3>
+<p>Fan submits a box or seat request → admin reviews capacity and sets a final price and payment deadline → fan receives approval or rejection → approved request becomes a pending order → ticket is issued only after successful payment. The estimate is never shown as collected revenue.</p>
+<h3 id="pay-later-season-group-and-transfer">Pay later, season, group, and transfer</h3>
+<ul>
+<li><strong>Pay later:</strong> the server holds selected seats for exactly 24 hours from creation. Payment confirms the order; expiry cancels it and releases the seats. Fan and admin see the same server time.</li>
+<li><strong>Season:</strong> admin defines a package and eligible inventory; fan purchases one fixed seat for the season and activates included matches. Package terms control coverage; exceptional-match priority may be separate.</li>
+<li><strong>Group:</strong> one invitation and share are attached to each seat. The order is confirmed only after all required shares are paid. On expiry, seats and paid shares follow the approved refund policy.</li>
+<li><strong>Transfer:</strong> the sender retains ownership until recipient acceptance. Acceptance atomically moves ownership and invalidates the sender's QR. Decline or cancellation leaves sender ownership intact.</li>
+</ul>
+<h2 id="state-and-data-contracts-for-implementation">5. State and data contracts for implementation</h2>
+<p>The normal seat lifecycle is <strong>published match → available section → selected seat → server quote → temporary hold → payment pending/succeeded/failed → issued ticket</strong>. The final amount is seat prices plus service fees minus an accepted discount. No payment starts after the seat has been lost. Each seat has an identity under a stadium, section, optional deck, row, and seat number. Stadium structures vary; the software must not assume every stadium has three tiers or two decks.</p>
+<p>Payment creation and webhooks must be idempotent. Seat holds must prevent double sale under concurrency. The ticket QR must be unique and linked to the ticket's current status; used, cancelled, refunded, or transferred tickets must not authorize fresh entry. The security team chooses signing, offline-display, and gate-verification mechanics. A locally visible offline pass never overrides authoritative gate validation.</p>
+<p>Validation covers phone/email, password policy, OTP expiry and resend limits, nonnegative admin values, section capacity not falling below sold/allocated inventory, and discount outcomes such as valid, expired, ineligible, and exhausted. Publishing a match, approving VIP, refunding an order, freezing an account, or publishing legal text requires visible confirmation and an audit record. Server authorization is mandatory even when the UI hides an action.</p>
+<p>All mock names, prices, order numbers, and kickoff times are illustrative. A displayed “Connected” payment setting in the design does <strong>not</strong> prove a real integration exists.</p>
+<h2 id="design-system-and-accessibility">6. Design system and accessibility</h2>
+<p>The interface follows the supplied Athletics design system: Obsidian <code>#000000</code>, Charcoal <code>#1d1d1d</code>, Paper White <code>#ffffff</code>, and Ash <code>#d6d5d0</code>. Functional states are monochrome and always combine <strong>explicit text, a shape/icon or hatch, and surface contrast</strong>. Official club/competition crests may retain their brand colors; state meaning must not depend on chromatic color. Use hairline borders, restrained cards, pill actions, no elevation or gradients, and an 8px spacing base.</p>
+<p>The working UI font substitutes are Newsreader for English display type and IBM Plex Sans for English functional type. Arabic uses Noto Serif Arabic and IBM Plex Sans Arabic as defined in the Blueprint. English LTR is the default; selecting Arabic mirrors navigation, arrows, alignment, and relevant layout in RTL. Deliver both languages with each functional development slice even though the delivered visual prototype currently contains English boards only.</p>
+<p>The approved first-release stadium map is <strong>interactive 2D</strong>, rendered as an oval stadium around a horizontal pitch, with actual section geometry and club crests where provided. VIP is identified by a double hairline frame and text. Seat availability uses text and hatching as well as opacity, never color alone. Provide an accessible list-based seat alternative for keyboard and screen-reader use.</p>
+<p>Design reference canvases are approximately 390×844 for mobile and 1440×900 for admin, <strong>not fixed production viewport constraints</strong>. Review mobile layouts at 320, 390, and 430px and admin at 1024 and 1440px. Keep primary actions reachable above device controls and keyboards; allow structured table overflow on smaller admin widths. Test focus order, touch targets, labels, contrast, and both reading directions.</p>
+<h2 id="administrative-roles">7. Administrative roles</h2>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Intended scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Super Admin</td>
+<td>All screens, team and permissions, platform settings.</td>
+</tr>
+<tr>
+<td>Match Manager</td>
+<td>Matches, stadiums, clubs, competitions, packages, pricing, and priority windows.</td>
+</tr>
+<tr>
+<td>Finance</td>
+<td>Orders, payments, refunds, reports, and authorized payment settings.</td>
+</tr>
+<tr>
+<td>Support</td>
+<td>Users, tickets, VIP requests and ticket resend; no match publication or pricing changes.</td>
+</tr>
+</tbody>
+</table>
+<p>Exact read/write permissions need a server-enforced operation matrix during development. Hidden buttons are not a security boundary.</p>
+<h2 id="assets-content-and-approved-decisions">8. Assets, content, and approved decisions</h2>
+<p>The supplied assets include the Tazakir wordmark in light/dark SVG and PNG, a 1024×1024 app icon, and a set of club and competition crests. The approved design uses real supplied crests where available and a neutral placeholder where not supplied. Confirm use rights before production. New club/continental-opponent logos must be uploadable through A-07; opponents cannot be treated as a fixed list.</p>
+<p>The product supports multiple stadiums and domestic/continental competitions within one country. Stadium data must model tier, deck, and side per venue rather than forcing a universal A/B/C layout. The source Blueprint records illustrative stadium capacities and a club list from an earlier design review; these are <strong>sample content requiring fresh operational verification</strong>, not a production database.</p>
+<p>Key decisions retained from the Blueprint:</p>
+<ol>
+<li>A season pass assigns a fixed seat for its season and may provide paid priority access to exceptional fixtures.</li>
+<li>Pay-later temporarily holds seats for 24 hours; the gateway/provider is not yet selected.</li>
+<li>VIP comprises serviced boxes and VIP seats and requires admin review and final pricing.</li>
+<li>The stadium map is 2D for the first release and matches the realistic tier/deck/side structure.</li>
+<li>The design remains monochrome for functional UI states.</li>
+<li>The default language is English LTR; Arabic RTL is available from Settings in the product implementation.</li>
+<li>Loyalty includes a full redemption catalog, not only a points balance.</li>
+<li>Search, system states, transfer, and group payment are in full scope.</li>
+<li>The final product name is <strong>Tazakir</strong>. Use actual generators for functional artifacts such as QR codes rather than decorative imitations.</li>
+<li>Official crests supplied later replaced earlier generic crest placeholders where possible.</li>
+</ol>
+<p>An in-app official club merchandise store and its discounts are <strong>outside this ticketing product</strong>. Any later store integration needs its own decision. Stadium photography and payment-brand logos are optional future visual assets, subject to rights and licensing.</p>
+<p>The legal screens contain draft Privacy Policy and Terms text, including booking-specific subjects such as pay-later, transfer, resale restrictions, and season passes. They require the real company identity, contact details, effective date, and legal review before publication. Neither the design text nor this handoff is legal approval.</p>
+<h2 id="open-decisions-and-acceptance-before-production">9. Open decisions and acceptance before production</h2>
+<p>The team may begin interface, data-model, and API development, but the following must be settled before live transactions or launch: the card/wallet/pay-later provider and whether pay-later is a third-party service or internal temporary hold; loyalty earning and redemption rules; refund/service-fee handling for cancelled and incomplete group orders; changed/cancelled fixture treatment across ordinary, season, and VIP tickets; approved legal identity/text; and logo rights.</p>
+<p>Acceptance requires review of at least one complete immediate-payment path, expired pay-later path, season path, VIP approval and rejection, group payment, and transfer in <strong>English and Arabic</strong>. The design review must also check errors, empty and offline states, admin roles, accessibility, and smaller viewports. Implementation then needs separate functional, security, payment, load, and operational tests. No static board alone proves a service works.</p>
+</main></body></html>
